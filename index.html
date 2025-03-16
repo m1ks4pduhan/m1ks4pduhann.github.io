@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tonzkie Pares</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+        body {
+            background-image: url('https://www.maggi.ph/sites/default/files/styles/home_stage_944_531/public/srh_recipes/8c22cc1a3fd9020bb04e980fcf14724f.jpg?h=1cfd0f79&itok=5oWpSQzb'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: black; /* FIXED: Now always black */
+            text-align: center;
+            transition: background 0.3s, color 0.3s;
+        }
+        body.dark-mode {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+        }
+        header {
+            background-color: #d62828;
+            color: white;
+            padding: 15px 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        nav {
+            background: #ffba08;
+            padding: 10px;
+        }
+        nav a {
+            color: black; /* FIXED: Links are now black */
+            text-decoration: none;
+            font-size: 18px;
+            margin: 0 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        nav a:hover {
+            color: #d62828;
+        }
+        .container {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .menu-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            transition: transform 0.2s;
+            color: black;
+        }
+        .menu-item:hover {
+            transform: scale(1.05);
+        }
+        .menu-item img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        button {
+            background: #d62828;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.2s;
+        }
+        button:hover {
+            background: #9d2020;
+        }
+        .cart {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ffba08;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            display: none;
+            text-align: left;
+            width: 250px;
+            color: black;
+        }
+        .cart h3 {
+            margin-bottom: 10px;
+        }
+        .cart-items {
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        .cart button {
+            background: #d62828;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #333;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .dark-mode-toggle:hover {
+            background: #555;
+        }
+        section {
+            padding: 50px 20px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<header>Tonzkie Pares</header>
+
+<nav>
+    <a href="#home" class="nav-link">Home</a>
+    <a href="#menu" class="nav-link">Menu</a>
+    <a href="#contact" class="nav-link">Contact</a>
+</nav>
+
+<button class="dark-mode-toggle">🌙</button>
+
+<section id="home">
+    <div class="container">
+        <h2>Welcome to Tonzkie Pares!</h2>
+        <p>Sawa ka na sa paasa? Dito, laging may lasa! Dito kana sa Tonzkie Pares! Masarap na, 'di pa paasa!</p>
+    </div>
+</section>
+
+<section id="menu">
+    <div class="container">
+        <h2>Our Menu</h2>
+        <div class="menu">
+            <div class="menu-item">
+                <h3>Beef Pares</h3>
+                <p>Kung siya nagkulang sa'yo, ang Beef Pares namin, sakto lang ang alat, tamis, at init para sa puso mong malamig.</p>
+                <button class="order-btn" data-item="Beef Pares">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <h3>Pares Mami</h3>
+                <p>Sa bawat higop ng Mami Pares ni Tonzkie, parang niyakap ka ulit ng tamang tao.</p>
+                <button class="order-btn" data-item="Pares Mami">Add to Cart</button>
+            </div>
+                        <div class="menu-item">
+                <h3>Lumpiang Shanghai</h3>
+                <p>Sa lahat kagat ng Lumpiang Shanghai siguradong 'di ka bibitawan—hindi tulad niya.</p>
+                <button class="order-btn" data-item="Lumpiang Shanghai">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+    <h3>Fried Rice</h3>
+    <p>Ang Fried Rice ni Tonzkie, parang tunay na pagmamahal—hindi lang pampuno, kundi sapat na para mabusog ka.</p>
+    <button class="order-btn" data-item="Fried Rice">Add to Cart</button>
+</div>
+<div class="menu-item">
+    <h3>Toge</h3>
+    <p>Ang Toge ni Tonzkie, parang pangarap mo—simple lang pero masarap kapag natupad.</p>
+    <button class="order-btn" data-item="Toge">Add to Cart</button>
+</div>
+<div class="menu-item">
+    <h3>Mountain Dew</h3>
+    <p>Isang lagok ng Mountain Dew, parang isang patak ng adrenaline—sasabay sa tibok ng puso mong nananabik.</p>
+    <button class="order-btn" data-item="Mountain Dew">Add to Cart</button>
+</div>
+<div class="menu-item">
+    <h3>Coca Cola</h3>
+    <p>Ang Coca Cola ni Tonzkie, parang tamang pagmamahal—sweet, refreshing, at walang halong panloloko.</p>
+    <button class="order-btn" data-item="Coca Cola">Add to Cart</button>
+</div>
+<div class="menu-item">
+    <h3>Water</h3>
+    <p>Ang Water ni Tonzkie, parang tunay na kaibigan—laging nandiyan para sayo, kahit kailan mo kailangan.</p>
+    <button class="order-btn" data-item="Water">Add to Cart</button>
+</div>
+        </div>
+    </div>
+    <section id="menu">
+    <div class="container">
+        <h2>Our Menu</h2>
+        <div class="menu">
+            <div class="menu-item">
+                <h3>Beef Pares</h3>
+                <p>Price: ₱45</p>
+                <input type="number" min="0" value="0" class="quantity" data-price="45">
+                <p>Total: ₱<span class="total-price">0</span></p>
+            </div>
+            <div class="menu-item">
+                <h3>Fried Rice</h3>
+                <p>Price: ₱10</p>
+                <input type="number" min="0" value="0" class="quantity" data-price="10">
+                <p>Total: ₱<span class="total-price">0</span></p>
+            </div>
+                        <div class="menu-item">
+                <h3>Beef Mami</h3>
+                <p>Price: ₱40</p>
+                <input type="number" min="0" value="0" class="quantity" data-price="40">
+                <p>Total: ₱<span class="total-price">0</span></p>
+            </div>
+            <div class="menu-item">
+                <h3>Lumpiang Shanghai</h3>
+                <p>Price: ₱20</p>
+                <input type="number" min="0" value="0" class="quantity" data-price="20">
+                <p>Total: ₱<span class="total-price">0</span></p>
+            </div>
+            <div class="menu-item">
+                <h3>Toge</h3>
+                <p>Price: ₱20</p>
+                <input type="number" min="0" value="0" class="quantity" data-price="20">
+                <p>Total: ₱<span class="total-price">0</span></p>
+            </div>
+            <div class="menu-item">
+                <h3>Mountain Dew</h3>
+                <p>Price: ₱15</p>
+                <input type="number" min="0" value="0" class="quantity" data-price="15">
+                <p>Total: ₱<span class="total-price">0</span></p>
+            </div>
+            <div class="menu-item">
+                <h3>Coca Cola</h3>
+                <p>Price: ₱15</p>
+                <input type="number" min="0" value="0" class="quantity" data-price="15">
+                <p>Total: ₱<span class="total-price">0</span></p>
+            </div>
+            <div class="menu-item">
+                <h3>Water</h3>
+                <p>Price: ₱0</p>
+                <input type="number" min="0" value="0" class="quantity" data-price="0">
+                <p>Total: ₱<span class="total-price">0</span></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.querySelectorAll(".quantity").forEach(input => {
+        input.addEventListener("input", function() {
+            let price = parseInt(this.getAttribute("data-price"));
+            let quantity = parseInt(this.value);
+            if (isNaN(quantity) || quantity < 0) {
+                quantity = 0;
+                this.value = 0;
+            }
+            let total = price * quantity;
+            this.nextElementSibling.querySelector(".total-price").textContent = total;
+        });
+    });
+</script>
+
+</section>
+
+<section id="contact">
+    <div class="container">
+        <h2>Contact Us</h2>
+        <p>📍 Location: Arko ng Pambuan, Gapan City, N.E.</p>
+        <p>📞 Phone: +63 906 890 2455</p>
+    </div>
+</section>
+
+<div class="cart" id="cart">
+    <h3>Your Cart 🛒</h3>
+    <div class="cart-items" id="cart-items"></div>
+    <button id="checkout-btn">Checkout</button>
+</div>
+
+<script>
+    let darkMode = false;
+    let cart = [];
+
+    document.querySelector(".dark-mode-toggle").addEventListener("click", function() {
+        darkMode = !darkMode;
+        document.body.classList.toggle("dark-mode");
+        this.textContent = darkMode ? "☀️" : "🌙";
+    });
+
+    document.querySelectorAll(".order-btn").forEach(button => {
+        button.addEventListener("click", function() {
+            let item = this.getAttribute("data-item");
+            addToCart(item);
+        });
+    });
+
+    function addToCart(item) {
+        cart.push(item);
+        document.getElementById("cart").style.display = "block";
+        updateCart();
+    }
+
+    function updateCart() {
+        let cartContainer = document.getElementById("cart-items");
+        cartContainer.innerHTML = "";
+        cart.forEach((item) => {
+            let div = document.createElement("div");
+            div.textContent = item;
+            div.style.padding = "5px 0";
+            cartContainer.appendChild(div);
+        });
+    }
+
+    document.getElementById("checkout-btn").addEventListener("click", function() {
+        if (cart.length === 0) {
+            alert("Your cart is empty!");
+        } else {
+            alert("Order placed: " + cart.join(", "));
+            cart = [];
+            updateCart();
+            document.getElementById("cart").style.display = "none";
+        }
+    });
+
+    document.querySelectorAll(".nav-link").forEach(link => {
+        link.addEventListener("click", function(event) {
+            event.preventDefault();
+            let target = document.querySelector(this.getAttribute("href"));
+            window.scrollTo({
+                top: target.offsetTop - 50,
+                behavior: "smooth"
+            });
+        });
+    });
+</script>
+</body>
+</html>
